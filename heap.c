@@ -17,16 +17,26 @@ typedef struct Heap{
 } Heap;
 
 
-void* heap_top(Heap* pq){
+void* heap_top(Heap* pq)
+{
   if( pq == NULL || pq->size == 0) return NULL;
   
-    return pq->heapArray[0].data;
+  return pq->heapArray[0].data;
 }
 
 
 
-void heap_push(Heap* pq, void* data, int priority){
+void heap_push(Heap* pq, void* data, int priority)
+{
+  if(pq == NULL) return;
 
+  if( pq->size == pq->capac)
+  {
+    int nueva_capacidad = (2* pq->capac) + 1;
+    pq->heapArray = realloc(pq->heapArray, nueva_capacidad * sizeof(heapElem));
+    pq->capac = nueva_capacidad;
+  }
+  
 }
 
 
@@ -34,7 +44,8 @@ void heap_pop(Heap* pq){
 
 }
 
-Heap* createHeap(){
+Heap* createHeap()
+{
   Heap *dato = malloc(sizeof(Heap));
   dato->capac=3;
   dato->size=0;
