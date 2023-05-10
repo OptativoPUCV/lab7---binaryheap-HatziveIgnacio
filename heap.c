@@ -36,7 +36,19 @@ void heap_push(Heap* pq, void* data, int priority)
     pq->heapArray = realloc(pq->heapArray, nueva_capacidad * sizeof(heapElem));
     pq->capac = nueva_capacidad;
   }
-  
+
+  int i = pq->size; // almacenar en espacio disponible
+  pq->heapArray[i].data = data;
+  pq->heapArray[i].priority = priority;
+  // organizar array
+  while (i > 0 && pq->heapArray[i].priority > pq->heapArray[(i - 1) / 2].priority) 
+  {
+    heapElem temp = pq->heapArray[i];
+    pq->heapArray[i] = pq->heapArray[(i - 1) / 2];
+    pq->heapArray[(i - 1) / 2] = temp;
+    i = (i - 1) / 2;
+  }
+  pq->size++;
 }
 
 
