@@ -2,3 +2,24 @@ Wed 10 May 2023 11:04:49 PM UTC:
  tests:  0|4
 total_score: 0/70
 cfd44d2
+Wed 10 May 2023 11:08:45 PM UTC: 
+ heap.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+In file included from test.c:4:
+heap.c: In function ‘createHeap’:
+heap.c:39:46: error: expected ‘)’ before ‘;’ token
+   39 |   dato->heapArray = malloc(sizeof(heapElem());
+      |                           ~                  ^
+      |                                              )
+heap.c:41:15: error: expected ‘;’ before ‘}’ token
+   41 |   return dato;
+      |               ^
+      |               ;
+   42 | }
+      | ~              
+heap.c:42:1: error: control reaches end of non-void function [-Werror=return-type]
+   42 | }
+      | ^
+cc1: all warnings being treated as errors
+Compilation failed
+3af8439
