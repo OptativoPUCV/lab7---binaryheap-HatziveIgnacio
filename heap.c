@@ -28,9 +28,9 @@ void* heap_top(Heap* pq)
 
 void heap_push(Heap* pq, void* data, int priority)
 {
-  if(pq == NULL) return;
+    if( pq == NULL || pq->size == 0) return;
 
-  if( pq->size == pq->capac)
+  if( pq->size == pq->capac) // si esta lleno
   {
     int nueva_capacidad = (2* pq->capac) + 1;
     pq->heapArray = realloc(pq->heapArray, nueva_capacidad * sizeof(heapElem));
@@ -42,6 +42,7 @@ void heap_push(Heap* pq, void* data, int priority)
   pq->heapArray[i].priority = priority;
   // organizar array
   while (i > 0 && pq->heapArray[i].priority > pq->heapArray[(i - 1) / 2].priority) 
+  // Mientras que el indice no sea la raiz y que la prioridad del nuevo dato no sea mayor que la del padre
   {
     heapElem temp = pq->heapArray[i];
     pq->heapArray[i] = pq->heapArray[(i - 1) / 2];
@@ -52,8 +53,11 @@ void heap_push(Heap* pq, void* data, int priority)
 }
 
 
-void heap_pop(Heap* pq){
-
+void heap_pop(Heap* pq)
+{
+  if( pq == NULL || pq->size == 0) return;
+  pq->size--;
+  pq->heapArray[0] = pq->heapArray[pq->size];
 }
 
 Heap* createHeap()
