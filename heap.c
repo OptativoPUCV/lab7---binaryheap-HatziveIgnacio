@@ -54,7 +54,8 @@ void heap_push(Heap *pq, void *data, int priority) {
 void heap_pop(Heap *pq) {
   if (pq == NULL || pq->size == 0)
     return;
-  pq->size--;
+  
+  pq->size--; // reducir tamanyo
   pq->heapArray[0] = pq->heapArray[pq->size];
 
   int padre =0;
@@ -74,13 +75,11 @@ void heap_pop(Heap *pq) {
        pq->heapArray[hijo] = temp;
        padre = hijo;
      }
-      else // si no, ta esta ordenado
+      else // si no, ya esta ordenado
      {
        break;
      }
   }
-
-  
 }
 
 Heap *createHeap() {
