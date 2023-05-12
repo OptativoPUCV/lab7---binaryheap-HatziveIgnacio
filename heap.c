@@ -64,7 +64,7 @@ void heap_pop(Heap *pq) {
     int hijo = 2*padre +1;
     if(hijo+1 < pq->size && pq->heapArray[hijo + 1].priority > pq->heapArray[hijo].priority) // hijo de mayor prioridad
     {
-      j++;
+      hijo++;
     }
 
      if (pq->heapArray[padre].priority < pq->heapArray[hijo].priority) // si el hijo tiene mayor prioridad que el padre
