@@ -56,6 +56,31 @@ void heap_pop(Heap *pq) {
     return;
   pq->size--;
   pq->heapArray[0] = pq->heapArray[pq->size];
+
+  int padre =0;
+
+  while((2*padre)+1 < pq->size ) // buscar padres
+  {
+    int hijo = 2*padre +1;
+    if(hijo+1 < pq->size && pq->heapArray[hijo + 1].priority > pq->heapArray[hijo].priority) // hijo de mayor prioridad
+    {
+      j++;
+    }
+
+     if (pq->heapArray[padre].priority < pq->heapArray[hijo].priority) // si el hijo tiene mayor prioridad que el padre
+     {
+       heapElem temp = pq->heapArray[padre];
+       pq->heapArray[padre] = pq->heapArray[hijo];
+       pq->heapArray[hijo] = temp;
+       padre = hijo;
+     }
+      else // si no, ta esta ordenado
+     {
+       break;
+     }
+  }
+
+  
 }
 
 Heap *createHeap() {
@@ -65,3 +90,6 @@ Heap *createHeap() {
   dato->heapArray = malloc(3 * sizeof(heapElem));
   return dato;
 }
+
+
+// para encontrar nodos padre = 2 * i + 1, (doble + 1)

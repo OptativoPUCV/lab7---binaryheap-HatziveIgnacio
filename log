@@ -84,3 +84,15 @@ Thu 11 May 2023 12:06:16 AM UTC:
  tests:  7|1
 total_score: 45/70
 84f1e97
+Fri 12 May 2023 01:38:17 AM UTC: 
+ heap.c | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+In file included from test.c:4:
+heap.c: In function ‘heap_pop’:
+heap.c:67:7: error: ‘j’ undeclared (first use in this function); did you mean ‘jn’?
+   67 |       j++;
+      |       ^
+      |       jn
+heap.c:67:7: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+adec8f8
